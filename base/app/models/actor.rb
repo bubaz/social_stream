@@ -530,6 +530,8 @@ class Actor < ActiveRecord::Base
   
   # After create callback
   def create_initial_relations
+    return if is_a?(Anonymous)
+
     Relation::Custom.defaults_for(self)
   end
 
